@@ -1,11 +1,11 @@
-// SPDX-License_Identifier: MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.9.0;
 
 contract SimpleStorage {
-    //init to 0
     uint256 favoriteNumber;
 
+    // This is a comment!
     struct People {
         uint256 favoriteNumber;
         string name;
