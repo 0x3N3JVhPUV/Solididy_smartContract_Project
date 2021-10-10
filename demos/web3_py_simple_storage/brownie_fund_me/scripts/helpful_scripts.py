@@ -1,11 +1,12 @@
 from brownie import accounts, config, network, MockV3Aggregator
 from web3 import Web3
 
-DECIMALS = 18
-STARTING_PRICE = 2000
+LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["development", "ganache-test"]
+DECIMALS = 8
+STARTING_PRICE = 200000000000
 
 def get_account():
-    if network.show_active() == "developement":
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         return accounts[0]
     else:
         return accounts.add(config["wallets"]["from_key"])

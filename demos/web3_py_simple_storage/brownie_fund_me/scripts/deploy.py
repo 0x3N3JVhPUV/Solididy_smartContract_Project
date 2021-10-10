@@ -1,5 +1,5 @@
 from brownie import FundMe, MockV3Aggregator, config, network
-from scripts.helpful_scripts import get_account, deploy_mocks
+from scripts.helpful_scripts import (get_account, deploy_mocks, LOCAL_BLOCKCHAIN_ENVIRONMENTS,)
 
 def deploy_fund_me():
     account = get_account()
@@ -8,7 +8,7 @@ def deploy_fund_me():
     #If we are in a persistence network like rinkeby, use the assopciate address
     #Otherwise deploy mocks
     print(f"network = ", {network.show_active()})
-    if network.show_active() != "development":
+    if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         price_feed_address = config["networks"][network.show_active()][
             "eth_usd_price_feed"
         ]
@@ -24,4 +24,4 @@ def deploy_fund_me():
     print(f"Contract deployed to {fund_me.address}")
 
 def main():
-    deploy_fund_me() 
+    deploy_fund_me()
